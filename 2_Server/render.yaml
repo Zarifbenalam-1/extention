@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: viral-post-finder-server
+    runtime: python
+    buildCommand: bash build.sh
+    startCommand: bash start.sh
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: ADMIN_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_API_URL
+        value: ""
+      - key: NEXT_PUBLIC_ADMIN_SECRET
+        sync: false
