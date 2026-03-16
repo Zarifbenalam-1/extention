@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// In production on Render, API is same origin so base URL is empty
 const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || '',
+  baseURL: '/api',   // same origin, under /api prefix
   headers: {
     'x-admin-token': process.env.NEXT_PUBLIC_ADMIN_SECRET || ''
   }
