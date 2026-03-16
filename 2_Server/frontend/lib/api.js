@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: '/api',   // same origin, under /api prefix
+  baseURL: '/api',
   headers: {
     'x-admin-token': process.env.NEXT_PUBLIC_ADMIN_SECRET || ''
   }
