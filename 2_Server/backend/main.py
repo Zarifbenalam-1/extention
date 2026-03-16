@@ -15,16 +15,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# All API routes are under /api/ — never conflicts with static files
+# API routes — completely separate from static files
 app.include_router(verify_router, prefix="/api")
-app.include_router(admin_router, prefix="/api")
+app.include_router(admin_router,  prefix="/api")
 
-# Redirect root to dashboard
+# Redirect / → /ui (the dashboard)
 @app.get("/")
 def root():
-    return RedirectResponse(url="/index.html")
+    return RedirectResponse(url="/ui/index.html")
 
-# Serve Next.js static export
+# Static files ONLY at /ui — never touches /api/*
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "out")
 if os.path.exists(STATIC_DIR):
-    app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
+    app.mount("/ui", StaticFiles(directory=STATIC_DIR, html=True), name="static")
